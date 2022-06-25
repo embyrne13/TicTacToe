@@ -1,0 +1,74 @@
+body {
+  background-color: navy;
+  background-size: cover;
+  color: aqua;
+  font-family: 'Londrina Outline';
+}
+section.table {
+  display: grid;
+  margin-left: 191px;
+  grid-template-columns: 200px 200px 200px;
+  grid-template-rows: 200px 200px 200px;
+  grid-gap: 10px;
+}
+h1 {
+  display: center;
+  font-size: 10vmin;
+  text-align: center;
+}
+#square1 {
+  background-color: aqua;
+}
+#square2 {
+  background-color: aqua;
+}
+#square3 {
+  background-color: aqua;
+}
+#square4 {
+  background-color: aqua;
+}
+#square5 {
+  background-color: aqua;
+}
+#square6 {
+  background-color: aqua;
+}
+#square7 {
+  background-color: aqua;
+}
+#square8 {
+  background-color: aqua;
+}
+#square9 {
+  background-color: aqua;
+}
+#button {
+  background-color: white;
+  display: inline-block;
+  color: navy;
+  size: 300px;
+}
+
+/* #score {
+  display: grid;
+  grid-template-columns: 1 fr 1fr;
+  grid-template-rows: 1fr;
+  font-size: 66px;
+} */
+#X {
+  color: green;
+  font-size: 100px;
+}
+#O {
+  color: green;
+  font-size: 100px;
+}
+section.scoreboard {
+  display: grid;
+  margin-right: 300px;
+  margin-top: 200px;
+  grid-template-columns: 200px 200px 200px;
+  grid-template-rows: 200px 200px 200px;
+  grid-gap: 10px;
+}
