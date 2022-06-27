@@ -1,66 +1,83 @@
-////////////////////////////////
-// Global Variables Here
-// let player = 'x'
-// const playAgain = document.getElementById('play again?')
-// const winning = document.getElementById('winningmessage')
-// const x = document.getElementById('Xscore')
-// const o = document.getElementById('Oscore')
-// let winner = false
-// let xWin = 0
-// let oWin = 0
-// let count = 0
-
-// let goFirst = x
 const square = document.querySelectorAll('.square')
-console.log(square)
-////////////////////////////////
-// Functions For Game Logic Here
-// startGame()
-// playAgain.addEventListener('click')
-// function startGame() {
-//   if (winner === false) {
-//     if (
-//       table[1] + table[2] + table[3] === 3 ||
-//       table[1] + table[4] + table[7] === 3 ||
-//       table[1] + table[5] + table[9] === 3 ||
-//       table[2] + table[5] + table[8] === 3 ||
-//       table[3] + table[5] + table[7] === 3 ||
-//       table[3] + table[6] + table[9] === 3 ||
-//       table[4] + table[5] + table[6] === 3 ||
-//       table[7] + table[8] + table[9] === 3 ||) {
-//       message.textContext = "X's win!!!"
-//       winner = true
-//       xWin++
-//       x.innerText = xWin
-//     }
-//     if (table[1] + table[2] + table[3] === -3 ||
-//       table[1] + table[4] + table[7] === -3 ||
-//       table[1] + table[5] + table[9] === -3 ||
-//       table[2] + table[5] + table[8] === -3 ||
-//       table[3] + table[5] + table[7] === -3 ||
-//       table[3] + table[6] + table[9] === -3 ||
-//       table[4] + table[5] + table[6] === -3 ||
-//       table[7] + table[8] + table[9] === -3 ||) {
-//       message.textContext = "O's win!!!"
-//       winner = true
-//       oWin++
-//       x.innerText = oWin
-//     }
-//   }
-// }
+const playerx = 'X'
+const playero = 'O'
+let turn = playerx
+const message = document.getElementById('message')
+const boardTrack = Array(square.length)
+boardTrack.fill(null)
+const scoreboard = document.getElementById('scoreboard')
+const scoreboardMessage = document.getElementById('scoreboardmessage')
+const playAgain = document.getElementById('Play Again')
+const winningCombos = [
+  { combo: [1, 2, 3] },
+  { combo: [4, 5, 6] },
+  { combo: [7, 8, 9] },
+  { combo: [1, 4, 7] },
+  { combo: [2, 5, 8] },
+  { combo: [3, 6, 9] },
+  { combo: [1, 5, 9] },
+  { combo: [3, 5, 7] }
+]
+let isWinner = false
 
-// function click(action) {
-//   let square =  parseInt(action.target.id.replace('square', ''))
-//   if (table[square] !== '') return
-//   checkWinner () }
-// function checkWinner()
-// ////////////////////////////////
-// // Event Listeners Here
-// document.querySelector('section.table').addEventListener('click')
-square.forEach((s) =>
-  s.addEventListener('click', () => {
-    console.log('click')
-  })
-)
-
-////////////////////////////////
+square.forEach((square) => square.addEventListener('click', squareClick))
+function squareClick(event) {
+  if (!isWinner) {
+    if (scoreboard.classList.contains('visible')) {
+      return
+    }
+    let squareNumber = event.target.getAttribute('id')
+    if (event.target.innerText !== '') {
+      return
+    }
+    if (turn === playerx) {
+      event.target.innerText = playerx
+      boardTrack[squareNumber - 1] = playerx
+      turn = playero
+      message.innerHTML = "O's turn!"
+      checkWinner()
+    } else {
+      event.target.innerText = playero
+      boardTrack[squareNumber - 1] = playero
+      turn = playerx
+      message.innerHTML = "X's turn!"
+      checkWinner()
+    }
+  }
+}
+function checkWinner() {
+  for (const winningCombo of winningCombos) {
+    const { combo } = winningCombo
+    const tv1 = boardTrack[combo[0] - 1]
+    const tv2 = boardTrack[combo[1] - 1]
+    const tv3 = boardTrack[combo[2] - 1]
+    if (tv1 != null && tv1 === tv2 && tv1 === tv3) {
+      gameOver(tv1)
+      message.className = 'hide'
+      return
+    }
+  }
+  const allSquares = boardTrack.every((square) => square !== null)
+  if (allSquares) {
+    gameOver(null)
+    message.className = 'hide'
+    return
+  }
+}
+function gameOver(winnerText) {
+  isWinner = true
+  let text = "It's a tie!!!"
+  if (winnerText != null) {
+    text = `Winner is ${winnerText}!!!`
+  }
+  scoreboard.className = 'show'
+  scoreboardMessage.innerText = text
+}
+playAgain.addEventListener('click', newGame)
+function newGame() {
+  isWinner = false
+  message.className = 'visible'
+  scoreboard.className = 'hide'
+  boardTrack.fill(null)
+  square.forEach((square) => (square.innerText = ''))
+}

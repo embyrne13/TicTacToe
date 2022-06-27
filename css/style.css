@@ -1,74 +1,55 @@
 body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: navy;
-  background-size: cover;
-  color: aqua;
   font-family: 'Londrina Outline';
 }
-section.table {
+#board {
   display: grid;
-  margin-left: 191px;
-  grid-template-columns: 200px 200px 200px;
-  grid-template-rows: 200px 200px 200px;
-  grid-gap: 10px;
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px;
+  margin-left: 50px;
+  cursor: pointer;
+}
+.square {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 80px;
+  color: aqua;
 }
 h1 {
-  display: center;
-  font-size: 10vmin;
+  color: aqua;
+  font-size: 77px;
+}
+.right-border {
+  border-right: 8px solid aqua;
+}
+.bottom-border {
+  border-bottom: 8px solid aqua;
+}
+#scoreboard {
   text-align: center;
 }
-#square1 {
-  background-color: aqua;
+h2 {
+  color: aqua;
+  font-size: 50px;
 }
-#square2 {
-  background-color: aqua;
+h3 {
+  color: aqua;
+  font-size: 50px;
 }
-#square3 {
-  background-color: aqua;
-}
-#square4 {
-  background-color: aqua;
-}
-#square5 {
-  background-color: aqua;
-}
-#square6 {
-  background-color: aqua;
-}
-#square7 {
-  background-color: aqua;
-}
-#square8 {
-  background-color: aqua;
-}
-#square9 {
-  background-color: aqua;
-}
-#button {
-  background-color: white;
-  display: inline-block;
+button {
   color: navy;
-  size: 300px;
+  font-size: 30px;
+  cursor: pointer;
+  background-color: aqua;
+  border: navy;
 }
-
-/* #score {
-  display: grid;
-  grid-template-columns: 1 fr 1fr;
-  grid-template-rows: 1fr;
-  font-size: 66px;
-} */
-#X {
-  color: green;
-  font-size: 100px;
+.show {
+  display: block;
 }
-#O {
-  color: green;
-  font-size: 100px;
-}
-section.scoreboard {
-  display: grid;
-  margin-right: 300px;
-  margin-top: 200px;
-  grid-template-columns: 200px 200px 200px;
-  grid-template-rows: 200px 200px 200px;
-  grid-gap: 10px;
+.hide {
+  display: none;
 }
