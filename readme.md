@@ -1,6 +1,6 @@
 # Tornado
 
-## Date: 7/4/2022
+## Date: 6/26/2022
 
 ### By: Emily Byrne
 
@@ -51,5 +51,6 @@ The name of the game is Tic Tac Toe. One player is X and one player is O. You ar
 
 ### **_Future Developments_**
 
+- Computer AI
 - Timer
 - Scoreboard
